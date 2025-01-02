@@ -11,6 +11,7 @@ con = pymysql.connect(
 
 )
 
+#Cria uma tabela no MySQL
 def CreateTab(nomeTabela):
     try:
         with con.cursor() as cursor:
@@ -19,6 +20,7 @@ def CreateTab(nomeTabela):
     except Exception as e:
         print(f'Erro: {e}')
 
+#Remove uma tabela no MySQL
 def RemoveTab(nomeTabela):
     try:
         with con.cursor() as cursor:
@@ -26,7 +28,7 @@ def RemoveTab(nomeTabela):
             print('Tabela REMOVIDA com sucesso')
     except Exception as e:
         print(f'Erro: {e}')
-
+#Insere um registro no MySQL
 def InsertTab(nomeTabela, nome):
     try:
         with con.cursor() as cursor:
@@ -35,13 +37,22 @@ def InsertTab(nomeTabela, nome):
             print('Registro inserido com sucesso')
     except Exception as e:
         print(f'Erro: {e}')
-
+#Modifica um Registro no MySQL
 def modificaTab(nomeTabela, nome):
     try:
         with con.cursor() as cursor:
             cursor.execute(f"UPDATE {nomeTabela} SET Nome = '{nome}' WHERE Nome = 'João'")
             con.commit()
             print('Registro modificado com sucesso')
+    except Exception as e:
+        print(f'Erro: {e}')
+#Remove Registro do MySQL
+def removeRegistro(nomeTabela, nome):
+    try:
+        with con.cursor() as cursor:
+            cursor.execute(f"DELETE FROM {nomeTabela} WHERE Nome = '{nome}'")
+            con.commit()
+            print('Registro removido com sucesso')
     except Exception as e:
         print(f'Erro: {e}')
 
